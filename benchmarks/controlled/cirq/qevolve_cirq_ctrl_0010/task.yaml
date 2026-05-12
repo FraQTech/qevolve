@@ -1,0 +1,31 @@
+id: qevolve_cirq_ctrl_0010
+title: "Controlled Cirq SingleQubitGate base-class migration"
+ecosystem: cirq
+category: deprecated_base_class_migration
+source: controlled
+
+repo:
+  url: "."
+  commit_before: "02a98fb9d808ffff589ba466da93b9c74ba64f1e"
+  commit_after: "9a53a91ff2937535cc7a3f8ce5c5ddd3a82d4427"
+
+env:
+  kind: venv
+  python: "3.11"
+  pip:
+    - "cirq==1.6.1"
+    - "pytest==8.3.5"
+
+checks:
+  - name: tests
+    cmd: "pytest -q"
+    timeout_sec: 300
+
+acceptance:
+  must_pass:
+    - tests
+  require_initial_failure: true
+
+budget:
+  max_iterations: 4
+  max_minutes: 10
