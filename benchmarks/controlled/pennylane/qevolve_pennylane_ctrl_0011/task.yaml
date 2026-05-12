@@ -1,0 +1,31 @@
+id: qevolve_pennylane_ctrl_0011
+title: "Controlled PennyLane qml.execute keyword removal"
+ecosystem: pennylane
+category: execution_keyword_removal
+source: controlled
+
+repo:
+  url: "."
+  commit_before: "3cb12a9e251d6cd7f415adaa11768b39ca688ee3"
+  commit_after: "9c8db86cf6a92d114b0d6bc4ecc18f116dbfe100"
+
+env:
+  kind: venv
+  python: "3.11"
+  pip:
+    - "pennylane==0.44.1"
+    - "pytest==8.3.5"
+
+checks:
+  - name: tests
+    cmd: "pytest -q"
+    timeout_sec: 300
+
+acceptance:
+  must_pass:
+    - tests
+  require_initial_failure: true
+
+budget:
+  max_iterations: 4
+  max_minutes: 10

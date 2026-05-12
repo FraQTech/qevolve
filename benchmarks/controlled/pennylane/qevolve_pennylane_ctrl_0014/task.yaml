@@ -1,0 +1,31 @@
+id: qevolve_pennylane_ctrl_0014
+title: "Controlled PennyLane operator/helper migration for simplify"
+ecosystem: pennylane
+category: operator_helper_migration
+source: controlled
+
+repo:
+  url: "."
+  commit_before: "29424a5d7546b79511dd673d55d5acc143f9c841"
+  commit_after: "2230d1d5fb152739ce32ab837f2242fd3fe345a2"
+
+env:
+  kind: venv
+  python: "3.11"
+  pip:
+    - "pennylane==0.44.1"
+    - "pytest==8.3.5"
+
+checks:
+  - name: tests
+    cmd: "pytest -q"
+    timeout_sec: 300
+
+acceptance:
+  must_pass:
+    - tests
+  require_initial_failure: true
+
+budget:
+  max_iterations: 4
+  max_minutes: 10

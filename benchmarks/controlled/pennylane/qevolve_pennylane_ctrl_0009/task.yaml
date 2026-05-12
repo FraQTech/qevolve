@@ -1,0 +1,31 @@
+id: qevolve_pennylane_ctrl_0009
+title: "Controlled PennyLane legacy device-name removal"
+ecosystem: pennylane
+category: legacy_device_name_removal
+source: controlled
+
+repo:
+  url: "."
+  commit_before: "aee11c4fcedcaa18365fdbf0ff1ee359fff4cbc4"
+  commit_after: "d0c31cc89ce000315018d807d935cc60e56803d6"
+
+env:
+  kind: venv
+  python: "3.11"
+  pip:
+    - "pennylane==0.44.1"
+    - "pytest==8.3.5"
+
+checks:
+  - name: tests
+    cmd: "pytest -q"
+    timeout_sec: 300
+
+acceptance:
+  must_pass:
+    - tests
+  require_initial_failure: true
+
+budget:
+  max_iterations: 4
+  max_minutes: 10

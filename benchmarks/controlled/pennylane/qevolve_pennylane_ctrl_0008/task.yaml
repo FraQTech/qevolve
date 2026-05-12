@@ -1,0 +1,31 @@
+id: qevolve_pennylane_ctrl_0008
+title: "Controlled PennyLane OpenQASM export helper migration"
+ecosystem: pennylane
+category: openqasm_export_helper_migration
+source: controlled
+
+repo:
+  url: "."
+  commit_before: "b656c6044c5313b1fda93e5d45e004b39c50bf85"
+  commit_after: "7c4d4fd9b554a9d71464a2fa64ff2b0cf46c8ce6"
+
+env:
+  kind: venv
+  python: "3.11"
+  pip:
+    - "pennylane==0.44.1"
+    - "pytest==8.3.5"
+
+checks:
+  - name: tests
+    cmd: "pytest -q"
+    timeout_sec: 300
+
+acceptance:
+  must_pass:
+    - tests
+  require_initial_failure: true
+
+budget:
+  max_iterations: 4
+  max_minutes: 10
