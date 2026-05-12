@@ -1,0 +1,31 @@
+id: qevolve_cirq_ctrl_0012
+title: "Controlled Cirq single-qubit merge helper migration"
+ecosystem: cirq
+category: deprecated_helper_protocol_migration
+source: controlled
+
+repo:
+  url: "."
+  commit_before: "e12260f6bddd4a0325af61c0a341d4e7ecd7b4fb"
+  commit_after: "cb87ff15b7e597f2ab0c608bedb6fd9964e4e7ba"
+
+env:
+  kind: venv
+  python: "3.11"
+  pip:
+    - "cirq==1.6.1"
+    - "pytest==8.3.5"
+
+checks:
+  - name: tests
+    cmd: "pytest -q"
+    timeout_sec: 300
+
+acceptance:
+  must_pass:
+    - tests
+  require_initial_failure: true
+
+budget:
+  max_iterations: 4
+  max_minutes: 10
