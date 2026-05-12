@@ -36,5 +36,32 @@ Example using the Qiskit OpenQASM export migration task:
 ```cmd
 cd benchmarks\controlled\seed_projects\qevolve_qiskit_ctrl_0004
 python -m venv .venv
+
+## Expected result:
+
+2 passed
+Run artifact sanity check
+python scripts\smoke_check.py
+
+## Expected output:
+
+[OK] QEVOLVE-Bench artifact sanity check passed.
+[OK] Tasks: 14
+[OK] Ecosystems: {'qiskit': 7, 'pennylane': 5, 'cirq': 2}
+QEVOLVE-Agent prototype
+
+## The repository includes a lightweight repair-planning prototype:
+
+python scripts\qevolve_agent_demo.py --task-dir benchmarks\controlled\seed_projects\qevolve_qiskit_ctrl_0004
+
+The prototype emits structured JSON repair proposals under outputs/agent_demo/. It does not claim validated autonomous repair performance.
+
+## Scope
+
+This initial release focuses on controlled SDK-evolution tasks. Real repository tasks and broader repair-method benchmarking are planned extensions.
+
+## Intended users
+
+QEVOLVE-Bench is intended for researchers and tool builders studying automated repair, dependency migration, quantum software maintenance, and LLM-based software engineering for quantum SDKs.
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 .\.venv\Scripts\python.exe -m pytest -q
