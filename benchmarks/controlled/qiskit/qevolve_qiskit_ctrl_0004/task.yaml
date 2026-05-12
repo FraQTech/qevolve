@@ -1,0 +1,31 @@
+id: qevolve_qiskit_ctrl_0004
+title: "Controlled Qiskit qasm export migration"
+ecosystem: qiskit
+category: circuit_export_migration
+source: controlled
+
+repo:
+  url: "."
+  commit_before: "80c4f77ef1bd9ca1ae7b5894271ee03937b9fe8d"
+  commit_after: "3da73a32cfde6fb9351ba136d617221e6f291115"
+
+env:
+  kind: venv
+  python: "3.11"
+  pip:
+    - "qiskit==2.3.1"
+    - "pytest==8.3.5"
+
+checks:
+  - name: tests
+    cmd: "pytest -q"
+    timeout_sec: 300
+
+acceptance:
+  must_pass:
+    - tests
+  require_initial_failure: true
+
+budget:
+  max_iterations: 4
+  max_minutes: 10

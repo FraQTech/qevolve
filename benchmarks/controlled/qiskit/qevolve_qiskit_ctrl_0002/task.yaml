@@ -1,0 +1,31 @@
+id: qevolve_qiskit_ctrl_0002
+title: "Controlled Qiskit QuantumInstance removal migration"
+ecosystem: qiskit
+category: quantuminstance_removal
+source: controlled
+
+repo:
+  url: "."
+  commit_before: "d6f03aeb606a70867ee4e4463ddf3f6e46cc6bf9"
+  commit_after: "86586db3858bd6bc88af9eb1e0c013f2b0584547"
+
+env:
+  kind: venv
+  python: "3.11"
+  pip:
+    - "qiskit==2.3.1"
+    - "pytest==8.3.5"
+
+checks:
+  - name: tests
+    cmd: "pytest -q"
+    timeout_sec: 300
+
+acceptance:
+  must_pass:
+    - tests
+  require_initial_failure: true
+
+budget:
+  max_iterations: 4
+  max_minutes: 10

@@ -1,0 +1,31 @@
+id: qevolve_qiskit_ctrl_0006
+title: "Controlled Qiskit fake backend helper migration"
+ecosystem: qiskit
+category: testing_helper_migration
+source: controlled
+
+repo:
+  url: "."
+  commit_before: "085c5389268bbbea32738ddd7615f4befeabba17"
+  commit_after: "41b9c69b9e30cd898ba03a5781132b0db2bed8a0"
+
+env:
+  kind: venv
+  python: "3.11"
+  pip:
+    - "qiskit==2.3.1"
+    - "pytest==8.3.5"
+
+checks:
+  - name: tests
+    cmd: "pytest -q"
+    timeout_sec: 300
+
+acceptance:
+  must_pass:
+    - tests
+  require_initial_failure: true
+
+budget:
+  max_iterations: 4
+  max_minutes: 10

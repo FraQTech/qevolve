@@ -1,0 +1,31 @@
+id: qevolve_qiskit_ctrl_0005
+title: "Controlled Qiskit BasicAer to BasicProvider migration"
+ecosystem: qiskit
+category: backend_provider_namespace_drift
+source: controlled
+
+repo:
+  url: "."
+  commit_before: "d5e7842b5d7c9a265977434dfd6eaabaa961fda4"
+  commit_after: "4db2a6f531c441b94dfc994279dfb6cf6c639842"
+
+env:
+  kind: venv
+  python: "3.11"
+  pip:
+    - "qiskit==2.3.1"
+    - "pytest==8.3.5"
+
+checks:
+  - name: tests
+    cmd: "pytest -q"
+    timeout_sec: 300
+
+acceptance:
+  must_pass:
+    - tests
+  require_initial_failure: true
+
+budget:
+  max_iterations: 4
+  max_minutes: 10

@@ -1,0 +1,31 @@
+id: qevolve_qiskit_ctrl_0007
+title: "Controlled Qiskit parallel_map import migration"
+ecosystem: qiskit
+category: import_path_rename
+source: controlled
+
+repo:
+  url: "."
+  commit_before: "3b77f019e7dce833cfa6e6725b1e140b6fbe208f"
+  commit_after: "bbe5bb50b270d9c78f26c81931f8a6ca029af99c"
+
+env:
+  kind: venv
+  python: "3.11"
+  pip:
+    - "qiskit==2.3.1"
+    - "pytest==8.3.5"
+
+checks:
+  - name: tests
+    cmd: "pytest -q"
+    timeout_sec: 300
+
+acceptance:
+  must_pass:
+    - tests
+  require_initial_failure: true
+
+budget:
+  max_iterations: 4
+  max_minutes: 10

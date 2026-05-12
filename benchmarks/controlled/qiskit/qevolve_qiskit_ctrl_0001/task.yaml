@@ -1,0 +1,35 @@
+id: qevolve_qiskit_ctrl_0001
+title: "Controlled Qiskit execute() migration task"
+ecosystem: qiskit
+category: removed_execute_api
+source: controlled
+
+repo:
+  url: "."
+  commit_before: "7750c24126f01b9661a983c32286a015ae8252ee"
+  commit_after: "7ebce41027fe7e077cc61b05ccb1f59d5c317f12"
+
+env:
+  kind: venv
+  python: "3.11"
+  pip:
+    - "qiskit==2.3.1"
+    - "pytest"
+
+checks:
+  - name: tests
+    cmd: "pytest -q"
+    timeout_sec: 600
+
+acceptance:
+  must_pass:
+    - tests
+
+budget:
+  max_iterations: 4
+  max_minutes: 15
+
+notes:
+  benchmark_role: "controlled"
+  rationale: "Old execute()-style Qiskit code should fail under the latest stable Qiskit."
+  migration_signal: "ImportError or API failure around execute"
