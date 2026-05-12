@@ -1,0 +1,30 @@
+{
+  "tool": "QEVOLVE-Agent prototype",
+  "generated_at": "2026-05-08T10:50:56Z",
+  "task_id": "qevolve_cirq_ctrl_0012",
+  "title": "Controlled Cirq single-qubit merge helper migration",
+  "ecosystem": "cirq",
+  "category": "deprecated_helper_protocol_migration",
+  "task_dir": "benchmarks\\controlled\\seed_projects\\qevolve_cirq_ctrl_0012",
+  "observed_failure_signal": "No concise failure signal detected; inspect failing_output.txt.",
+  "repair_plan": [
+    "Read task metadata and benchmark notes.",
+    "Identify the SDK-evolution failure category.",
+    "Generate a minimal migration-oriented repair plan.",
+    "Preserve existing tests and public behavior.",
+    "Run the task acceptance check after applying the patch."
+  ],
+  "category_specific_hints": [
+    "Replace deprecated Cirq helper/protocol APIs.",
+    "Use the current transformer/helper API and validate equivalence up to global phase when appropriate."
+  ],
+  "evidence_files": [
+    "task.yaml",
+    "benchmark_notes.md",
+    "failing_output.txt",
+    "passing_output.txt",
+    "requirements.txt"
+  ],
+  "prototype_scope": "This prototype emits structured repair proposals for QEVOLVE-Bench tasks. It does not claim validated autonomous repair performance.",
+  "notes_excerpt": "# Benchmark Notes: qevolve_cirq_ctrl_0012\n\n- Ecosystem: Cirq\n- Category: deprecated_helper_protocol_migration\n- Source: controlled\n- Target version: cirq 1.6.1\n- commit_before: <PASTE_FAILING_SHA_HERE>\n- commit_after: <PASTE_PASSING_SHA_HERE>\n\n## Failure signal\nAttributeError caused by cirq.merge_single_qubit_gates_into_phased_x_z being unavailable.\n\n## Gold fix\nReplace:\n- cirq.merge_single_qubit_gates_into_phased_x_z(circuit)\n\nwith:\n- cirq.merge_single_qubit_gates_to_phased_x_and_z(circuit)\n\n## Check\npytest -q\n\n## Notes\nAcceptance checks verify that the optimized circuit remains unitary-equivalent to the original tiny 1-qubit circuit and does not increase operation count.\n"
+}

@@ -1,0 +1,30 @@
+{
+  "tool": "QEVOLVE-Agent prototype",
+  "generated_at": "2026-05-08T10:50:55Z",
+  "task_id": "qevolve_qiskit_ctrl_0005",
+  "title": "Controlled Qiskit BasicAer to BasicProvider migration",
+  "ecosystem": "qiskit",
+  "category": "backend_provider_namespace_drift",
+  "task_dir": "benchmarks\\controlled\\seed_projects\\qevolve_qiskit_ctrl_0005",
+  "observed_failure_signal": "No concise failure signal detected; inspect failing_output.txt.",
+  "repair_plan": [
+    "Read task metadata and benchmark notes.",
+    "Identify the SDK-evolution failure category.",
+    "Generate a minimal migration-oriented repair plan.",
+    "Preserve existing tests and public behavior.",
+    "Run the task acceptance check after applying the patch."
+  ],
+  "category_specific_hints": [
+    "Update backend/provider import paths.",
+    "Use supported fake-provider or simulator interfaces under the pinned Qiskit version."
+  ],
+  "evidence_files": [
+    "task.yaml",
+    "benchmark_notes.md",
+    "failing_output.txt",
+    "passing_output.txt",
+    "requirements.txt"
+  ],
+  "prototype_scope": "This prototype emits structured repair proposals for QEVOLVE-Bench tasks. It does not claim validated autonomous repair performance.",
+  "notes_excerpt": "# Benchmark Notes: qevolve_qiskit_ctrl_0005\n\n- Ecosystem: Qiskit\n- Category: backend_provider_namespace_drift\n- Source: controlled\n- Target version: qiskit 2.3.1\n- commit_before: <failing_commit_sha>\n- commit_after: <passing_commit_sha>\n\n## Failure signal\nImportError caused by `from qiskit import BasicAer` no longer being supported.\n\n## Gold fix\nReplace:\n- `from qiskit import BasicAer`\n- `BasicAer.get_backend(\"qasm_simulator\")`\n\nwith:\n- `from qiskit.providers.basic_provider import BasicProvider`\n- `BasicProvider().get_backend(\"basic_simulator\")`\n\n## Check\n`pytest -q`\n\n## Notes\nAcceptance checks verify that a tiny measured circuit still runs on a simulator-only backend and returns a count dictionary with total shots preserved."
+}

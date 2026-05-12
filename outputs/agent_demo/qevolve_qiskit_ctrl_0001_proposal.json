@@ -1,0 +1,30 @@
+{
+  "tool": "QEVOLVE-Agent prototype",
+  "generated_at": "2026-05-08T10:50:55Z",
+  "task_id": "qevolve_qiskit_ctrl_0001",
+  "title": "Controlled Qiskit execute() migration task",
+  "ecosystem": "qiskit",
+  "category": "removed_execute_api",
+  "task_dir": "benchmarks\\controlled\\seed_projects\\qevolve_qiskit_ctrl_0001",
+  "observed_failure_signal": "No concise failure signal detected; inspect failing_output.txt.",
+  "repair_plan": [
+    "Read task metadata and benchmark notes.",
+    "Identify the SDK-evolution failure category.",
+    "Generate a minimal migration-oriented repair plan.",
+    "Preserve existing tests and public behavior.",
+    "Run the task acceptance check after applying the patch."
+  ],
+  "category_specific_hints": [
+    "Replace removed direct execution API usage with a modern backend/transpile/run workflow.",
+    "Prefer explicit simulator/backend construction and pytest-verifiable output."
+  ],
+  "evidence_files": [
+    "task.yaml",
+    "benchmark_notes.md",
+    "failing_output.txt",
+    "passing_output.txt",
+    "requirements.txt"
+  ],
+  "prototype_scope": "This prototype emits structured repair proposals for QEVOLVE-Bench tasks. It does not claim validated autonomous repair performance.",
+  "notes_excerpt": "# Benchmark Notes: qevolve_qiskit_ctrl_0001\n\n- Ecosystem: Qiskit\n- Category: removed_execute_api\n- Source: controlled\n- Target version: qiskit 2.3.1\n- commit_before: 7750c24126f01b9661a983c32286a015ae8252ee\n- commit_after: 7ebce41027fe7e077cc61b05ccb1f59d5c317f12\n\n## Failure signal\nImportError: cannot import name 'execute' from 'qiskit'\n\n## Gold fix\nReplace old `execute()` workflow with:\n- `transpile(circuit, backend)`\n- `backend.run(transpiled_circuit, shots=...)`\n\n## Check\n`pytest -q`\n\n## Notes\nPassing run emits a warning about Aer not being installed; this is acceptable because the task still passes and uses `GenericBackendV2` with fallback simulation."
+}

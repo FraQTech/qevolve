@@ -1,0 +1,30 @@
+{
+  "tool": "QEVOLVE-Agent prototype",
+  "generated_at": "2026-05-08T10:50:55Z",
+  "task_id": "qevolve_pennylane_ctrl_0008",
+  "title": "Controlled PennyLane OpenQASM export helper migration",
+  "ecosystem": "pennylane",
+  "category": "openqasm_export_helper_migration",
+  "task_dir": "benchmarks\\controlled\\seed_projects\\qevolve_pennylane_ctrl_0008",
+  "observed_failure_signal": "No concise failure signal detected; inspect failing_output.txt.",
+  "repair_plan": [
+    "Read task metadata and benchmark notes.",
+    "Identify the SDK-evolution failure category.",
+    "Generate a minimal migration-oriented repair plan.",
+    "Preserve existing tests and public behavior.",
+    "Run the task acceptance check after applying the patch."
+  ],
+  "category_specific_hints": [
+    "Replace removed or changed OpenQASM helper.",
+    "Use the currently supported PennyLane OpenQASM export path."
+  ],
+  "evidence_files": [
+    "task.yaml",
+    "benchmark_notes.md",
+    "failing_output.txt",
+    "passing_output.txt",
+    "requirements.txt"
+  ],
+  "prototype_scope": "This prototype emits structured repair proposals for QEVOLVE-Bench tasks. It does not claim validated autonomous repair performance.",
+  "notes_excerpt": "# Benchmark Notes: qevolve_pennylane_ctrl_0008\n\n- Ecosystem: PennyLane\n- Category: openqasm_export_helper_migration\n- Source: controlled\n- Target version: pennylane 0.44.1\n- commit_before: <PASTE_FAILING_SHA_HERE>\n- commit_after: <PASTE_PASSING_SHA_HERE>\n\n## Failure signal\nAttributeError caused by QuantumScript.to_openqasm() being unavailable.\n\n## Gold fix\nReplace:\n- script.to_openqasm()\n\nwith:\n- qml.to_openqasm(script)\n\n## Check\npytest -q\n\n## Notes\nAcceptance checks verify that a tiny 2-wire PennyLane quantum script exports to OpenQASM text containing the expected header, include statement, register declarations, and core gate lines.\n"
+}

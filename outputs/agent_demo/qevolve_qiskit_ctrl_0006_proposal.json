@@ -1,0 +1,30 @@
+{
+  "tool": "QEVOLVE-Agent prototype",
+  "generated_at": "2026-05-08T10:50:55Z",
+  "task_id": "qevolve_qiskit_ctrl_0006",
+  "title": "Controlled Qiskit fake backend helper migration",
+  "ecosystem": "qiskit",
+  "category": "testing_helper_migration",
+  "task_dir": "benchmarks\\controlled\\seed_projects\\qevolve_qiskit_ctrl_0006",
+  "observed_failure_signal": "No concise failure signal detected; inspect failing_output.txt.",
+  "repair_plan": [
+    "Read task metadata and benchmark notes.",
+    "Identify the SDK-evolution failure category.",
+    "Generate a minimal migration-oriented repair plan.",
+    "Preserve existing tests and public behavior.",
+    "Run the task acceptance check after applying the patch."
+  ],
+  "category_specific_hints": [
+    "Replace removed testing/helper import paths.",
+    "Use the modern helper or public testing utility exposed by the SDK."
+  ],
+  "evidence_files": [
+    "task.yaml",
+    "benchmark_notes.md",
+    "failing_output.txt",
+    "passing_output.txt",
+    "requirements.txt"
+  ],
+  "prototype_scope": "This prototype emits structured repair proposals for QEVOLVE-Bench tasks. It does not claim validated autonomous repair performance.",
+  "notes_excerpt": "# Benchmark Notes: qevolve_qiskit_ctrl_0006\n\n- Ecosystem: Qiskit\n- Category: testing_helper_migration\n- Source: controlled\n- Target version: qiskit 2.3.1\n- commit_before: <PASTE_FAILING_SHA_HERE>\n- commit_after: <PASTE_PASSING_SHA_HERE>\n\n## Failure signal\nImportError caused by Fake5QV1 no longer being available from qiskit.providers.fake_provider.\n\n## Gold fix\nReplace:\n- \from qiskit.providers.fake_provider import Fake5QV1\n- \backend = Fake5QV1()\n\nwith:\n- \from qiskit.providers.fake_provider import GenericBackendV2\n- \backend = GenericBackendV2(num_qubits=2)\n\n## Check\npytest -q\n\n## Notes\nAcceptance checks verify that a tiny 2-qubit Bell-style measured circuit still runs on a simulator-only testing backend and returns a count dictionary with total shots preserved.\n"
+}

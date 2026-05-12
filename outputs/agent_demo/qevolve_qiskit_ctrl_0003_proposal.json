@@ -1,0 +1,30 @@
+{
+  "tool": "QEVOLVE-Agent prototype",
+  "generated_at": "2026-05-08T10:50:55Z",
+  "task_id": "qevolve_qiskit_ctrl_0003",
+  "title": "Controlled Qiskit bind_parameters to assign_parameters migration",
+  "ecosystem": "qiskit",
+  "category": "parameter_binding_migration",
+  "task_dir": "benchmarks\\controlled\\seed_projects\\qevolve_qiskit_ctrl_0003",
+  "observed_failure_signal": "No concise failure signal detected; inspect failing_output.txt.",
+  "repair_plan": [
+    "Read task metadata and benchmark notes.",
+    "Identify the SDK-evolution failure category.",
+    "Generate a minimal migration-oriented repair plan.",
+    "Preserve existing tests and public behavior.",
+    "Run the task acceptance check after applying the patch."
+  ],
+  "category_specific_hints": [
+    "Replace removed bind_parameters usage.",
+    "Use assign_parameters with an explicit parameter mapping."
+  ],
+  "evidence_files": [
+    "task.yaml",
+    "benchmark_notes.md",
+    "failing_output.txt",
+    "passing_output.txt",
+    "requirements.txt"
+  ],
+  "prototype_scope": "This prototype emits structured repair proposals for QEVOLVE-Bench tasks. It does not claim validated autonomous repair performance.",
+  "notes_excerpt": "# Benchmark Notes: qevolve_qiskit_ctrl_0003\n\n- Ecosystem: Qiskit\n- Category: parameter_binding_migration\n- Source: controlled\n- Target version: qiskit 2.3.1\n- commit_before: ed7090a7d265af69022cd809a7ed45dae11f4915\n- commit_after: 5a85d809c3232eae69573376249716ce89c5c060\n\n## Failure signal\nAttributeError: 'QuantumCircuit' object has no attribute 'bind_parameters'\n\n## Gold fix\nReplace:\n- `bind_parameters({...})`\n\nwith:\n- `assign_parameters({...})`\n\n## Check\n`pytest -q`\n\n## Notes\nAcceptance checks verify that a parameterized 1-qubit circuit is created correctly and that binding a numeric value removes the free parameter while preserving the `ry` operation."
+}

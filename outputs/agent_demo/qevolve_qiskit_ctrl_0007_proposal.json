@@ -1,0 +1,30 @@
+{
+  "tool": "QEVOLVE-Agent prototype",
+  "generated_at": "2026-05-08T10:50:55Z",
+  "task_id": "qevolve_qiskit_ctrl_0007",
+  "title": "Controlled Qiskit parallel_map import migration",
+  "ecosystem": "qiskit",
+  "category": "import_path_rename",
+  "task_dir": "benchmarks\\controlled\\seed_projects\\qevolve_qiskit_ctrl_0007",
+  "observed_failure_signal": "No concise failure signal detected; inspect failing_output.txt.",
+  "repair_plan": [
+    "Read task metadata and benchmark notes.",
+    "Identify the SDK-evolution failure category.",
+    "Generate a minimal migration-oriented repair plan.",
+    "Preserve existing tests and public behavior.",
+    "Run the task acceptance check after applying the patch."
+  ],
+  "category_specific_hints": [
+    "Update renamed import paths.",
+    "Prefer stable public SDK namespaces over private modules."
+  ],
+  "evidence_files": [
+    "task.yaml",
+    "benchmark_notes.md",
+    "failing_output.txt",
+    "passing_output.txt",
+    "requirements.txt"
+  ],
+  "prototype_scope": "This prototype emits structured repair proposals for QEVOLVE-Bench tasks. It does not claim validated autonomous repair performance.",
+  "notes_excerpt": "# Benchmark Notes: qevolve_qiskit_ctrl_0007\n\n- Ecosystem: Qiskit\n- Category: import_path_rename\n- Source: controlled\n- Target version: qiskit 2.3.1\n- commit_before: <PASTE_FAILING_SHA_HERE>\n- commit_after: <PASTE_PASSING_SHA_HERE>\n\n## Failure signal\nImport failure caused by \from qiskit.tools import parallel_map.\n\n## Gold fix\nReplace:\n- \from qiskit.tools import parallel_map\n\nwith:\n- \from qiskit.utils import parallel_map\n\n## Check\npytest -q\n\n## Notes\nAcceptance checks verify that the helper still computes the expected squared values on a tiny deterministic input list after the import-path migration.\n"
+}

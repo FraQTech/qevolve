@@ -1,0 +1,30 @@
+{
+  "tool": "QEVOLVE-Agent prototype",
+  "generated_at": "2026-05-08T10:50:55Z",
+  "task_id": "qevolve_cirq_ctrl_0010",
+  "title": "Controlled Cirq SingleQubitGate base-class migration",
+  "ecosystem": "cirq",
+  "category": "deprecated_base_class_migration",
+  "task_dir": "benchmarks\\controlled\\seed_projects\\qevolve_cirq_ctrl_0010",
+  "observed_failure_signal": "No concise failure signal detected; inspect failing_output.txt.",
+  "repair_plan": [
+    "Read task metadata and benchmark notes.",
+    "Identify the SDK-evolution failure category.",
+    "Generate a minimal migration-oriented repair plan.",
+    "Preserve existing tests and public behavior.",
+    "Run the task acceptance check after applying the patch."
+  ],
+  "category_specific_hints": [
+    "Replace deprecated Cirq base classes.",
+    "Subclass cirq.Gate and implement protocol methods such as _num_qubits_ and _unitary_."
+  ],
+  "evidence_files": [
+    "task.yaml",
+    "benchmark_notes.md",
+    "failing_output.txt",
+    "passing_output.txt",
+    "requirements.txt"
+  ],
+  "prototype_scope": "This prototype emits structured repair proposals for QEVOLVE-Bench tasks. It does not claim validated autonomous repair performance.",
+  "notes_excerpt": "# Benchmark Notes: qevolve_cirq_ctrl_0010\n\n- Ecosystem: Cirq\n- Category: deprecated_base_class_migration\n- Source: controlled\n- Target version: cirq 1.6.1\n- commit_before: <PASTE_FAILING_SHA_HERE>\n- commit_after: <PASTE_PASSING_SHA_HERE>\n\n## Failure signal\nAttributeError caused by cirq.SingleQubitGate being unavailable.\n\n## Gold fix\nReplace a custom gate definition based on:\n- class MyXGate(cirq.SingleQubitGate)\n\nwith a modern Cirq gate definition based on:\n- class MyXGate(cirq.Gate)\n- _num_qubits_(self) -> 1\n- _unitary_(self)\n\n## Check\npytest -q\n\n## Notes\nAcceptance checks verify that a tiny 1-qubit custom gate circuit runs on the default simulator and deterministically measures all ones after an X-like gate followed by measurement.\n"
+}
