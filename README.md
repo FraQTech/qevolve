@@ -11,12 +11,13 @@ The current release contains controlled SDK-migration tasks with pinned environm
 - `docs/` — task schema and artifact documentation
 - `scripts/` — helper scripts
 - `outputs/` — example outputs and smoke-test logs
-- `paper/` — submission materials
 
 ## Documentation
 
 - [Artifact overview](docs/artifact_overview.md)
 - [Task schema](docs/task_schema.md)
+- [Repair harness design](docs/repair_harness_design.md)
+- [Screencast script](docs/screencast_script.md)
 
 ## Current release
 
@@ -28,17 +29,6 @@ This release contains 14 controlled quantum software evolution tasks:
 
 Each task is simulator-only and designed to capture a maintenance-level SDK migration.
 
-## Task contents
-
-Each task contains:
-
-- `task.yaml`
-- `src/`
-- `tests/`
-- `failing_output.txt`
-- `passing_output.txt`
-- `benchmark_notes.md`
-
 ## Quickstart: run one task
 
 Example using the Qiskit OpenQASM export migration task:
@@ -46,17 +36,5 @@ Example using the Qiskit OpenQASM export migration task:
 ```cmd
 cd benchmarks\controlled\seed_projects\qevolve_qiskit_ctrl_0004
 python -m venv .venv
-.\.venv\Scripts\python.exe -m pip install qiskit==2.3.1 pytest==8.3.5
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
 .\.venv\Scripts\python.exe -m pytest -q
-
-## Expected result:
-2 passed
-
-
-## Scope
-
-This initial release focuses on controlled SDK-evolution tasks. Real repository tasks and broader repair-method benchmarking are planned extensions.
-
-## Intended users
-
-QEVOLVE-Bench is intended for researchers and tool builders studying automated repair, dependency migration, quantum software maintenance, and LLM-based software engineering for quantum SDKs.
